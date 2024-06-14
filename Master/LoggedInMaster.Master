@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LoggedInMaster.Master.cs" Inherits="PSDProject.Master.LoggedInMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../Style/masterstyle.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div class="NavBar">
+            <asp:Button ID="btn_home" runat="server" Text="Home" CssClass="button" BorderStyle="None" OnClick="btn_home_Click" />
+            <asp:Button ID="btn_cart" runat="server" Text="Cart" CssClass="button" BorderStyle="None" />
+            <asp:Button ID="btn_transaction" runat="server" Text="Transaction" CssClass="button" BorderStyle="None" />
+            <asp:Button ID="btn_report" runat="server" Text="Transaction" CssClass="button" BorderStyle="None" />
+            <asp:Button ID="btn_profile" runat="server" Text="Profile" CssClass="button" BorderStyle="None" />
+            <asp:Button ID="btn_logout" runat="server" Text="Logout" CssClass="button" BorderStyle="None" OnClick="btn_logout_Click" />
+        </div>
+
+        <div class="ContentBody">
+            <asp:ContentPlaceHolder ID="ContentBody" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
