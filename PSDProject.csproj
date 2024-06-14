@@ -93,14 +93,17 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Style\masterstyle.css" />
+    <Content Include="View\Cart.aspx" />
     <Content Include="View\InsertStationery.aspx" />
     <Content Include="View\Register.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Home.aspx" />
+    <Content Include="View\StationeryDetails.aspx" />
     <Content Include="View\TransactionHistory.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\StationeryController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Factory\CartFactory.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Factory\TDFactory.cs" />
     <Compile Include="Factory\THFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\StationeryHandler.cs" />
     <Compile Include="Handler\UserHandler.cs" />
     <Compile Include="Master\LoggedInMaster.Master.cs">
@@ -163,6 +167,13 @@
     <Compile Include="Repository\TDRepository.cs" />
     <Compile Include="Repository\THRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="View\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\InsertStationery.aspx.cs">
       <DependentUpon>InsertStationery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +201,13 @@
     </Compile>
     <Compile Include="View\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\StationeryDetails.aspx.cs">
+      <DependentUpon>StationeryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\StationeryDetails.aspx.designer.cs">
+      <DependentUpon>StationeryDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>

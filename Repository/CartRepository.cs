@@ -11,11 +11,17 @@ namespace PSDProject.Repository
     {
         public static RAisoDBEntities db = DatabaseSingleton.getInstance();
 
-        public static void CreateCart(int userID, int stationeryID, int quantity)
+
+        public static List<Cart> GetCarts()
+        {
+            return db.Carts.ToList();
+        }
+        public static Cart CreateCart(int userID, int stationeryID, int quantity)
         {
             Cart cart = CartFactory.CreateCart(userID, stationeryID, quantity);
             db.Carts.Add(cart);
             db.SaveChanges();
+            return cart;
         }
 
         public static Cart FindByID(int userID, int stationeryID)

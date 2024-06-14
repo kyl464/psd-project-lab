@@ -28,6 +28,11 @@ namespace PSDProject.Handler
         {
             return StationeryRepository.FindStationeryByName(name);
         }
+        public static MsStationery GetStationeryById(int stationeryID)
+        {
+            return StationeryRepository.FindStationeryById(stationeryID);
+        }
+
 
         public static List<MsStationery> GetAllStationeris()
         {

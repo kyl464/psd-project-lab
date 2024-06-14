@@ -27,7 +27,7 @@ namespace PSDProject.View
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            gv_TransactionHistory.DataSource = 
+            
         }
 
         protected void gv_TransactionHistory_SelectedIndexChanged(object sender, EventArgs e)

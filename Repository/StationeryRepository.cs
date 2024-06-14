@@ -43,6 +43,12 @@ namespace PSDProject.Repository
             
             return false;
         }
+        public static MsStationery FindStationeryById(int stationeryID)
+        {
+            MsStationery msStationery = db.MsStationeries.Find(stationeryID);
+            return msStationery;
+        }
+
 
         public static void DeleteStationery(string name)
         {

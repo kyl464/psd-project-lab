@@ -41,5 +41,10 @@ namespace PSDProject.View
         {
             Response.Redirect("~/View/InsertStationery.aspx");
         }
+
+        protected void gv_stationeries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("~/View/StationeryDetails.aspx");
+        }
     }
 }

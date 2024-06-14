@@ -59,5 +59,10 @@ namespace PSDProject.Master
         {
             Response.Redirect("~/View/TransactionHistory.aspx");
         }
+
+        protected void btn_cart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/View/Cart.aspx");
+        }
     }
 }
