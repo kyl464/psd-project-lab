@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="GuestMaster.master.cs" Inherits="PSDProject.Master.GuestMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../Style/masterstyle.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div class="NavBar">
+            <asp:Button ID="btn_home" runat="server" Text="Home" CssClass="button" BorderStyle="None" OnClick="btn_home_Click" />
+            <asp:Button ID="btn_register" runat="server" Text="Register" CssClass="button" BorderStyle="None" OnClick="btn_register_Click" />
+            <asp:Button ID="btn_login" runat="server" Text="Login" CssClass="button" BorderStyle="None" OnClick="btn_login_Click" />         
+        </div>
+
+        <div class="ContentBody">
+            <asp:ContentPlaceHolder ID="ContentBody" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
