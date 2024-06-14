@@ -32,7 +32,7 @@ namespace PSDProject.View
             {
                 btn_insert.Visible = false;
             }
-            
+
             gv_stationeries.DataSource = StationeryController.GetAllStationeries();
             gv_stationeries.DataBind();
         }
@@ -42,9 +42,26 @@ namespace PSDProject.View
             Response.Redirect("~/View/InsertStationery.aspx");
         }
 
-        protected void gv_stationeries_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gv_stationeries_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Response.Redirect("~/View/StationeryDetails.aspx");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlStationeryDetails = (HyperLink)e.Row.FindControl("hlStationeryDetails");
+                Label lblStationeryName = (Label)e.Row.FindControl("lblStationeryName");
+
+                HttpCookie cookie = Request.Cookies["session"];
+                if (cookie == null || (cookie["role"] != "Admin" && cookie["role"] != "Customer"))
+                {
+                    hlStationeryDetails.Visible = false;
+                    lblStationeryName.Visible = true;
+                }
+                else
+                {
+                    hlStationeryDetails.Visible = true;
+                    lblStationeryName.Visible = false;
+                }
+            }
         }
+
     }
 }

@@ -3,7 +3,7 @@
     <h1>Stationery Details</h1>
     
    
-    <asp:GridView ID="gvStationeryDetails" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="gvStationeryDetails" runat="server" AutoGenerateColumns="False" Width="457px">
         <Columns>
             <asp:BoundField DataField="StationeryID" HeaderText="ID" />
             <asp:BoundField DataField="StationeryName" HeaderText="Name" />
