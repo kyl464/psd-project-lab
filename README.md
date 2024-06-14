@@ -21,7 +21,8 @@ You need to encapsulate all complex object creation in this layer. For example, 
 Model layer is responsible for representing concepts in the business or information about the business situation. The model layer is handled using entity framework tool.
 
 The following is the Entity Relationship Diagram for RAiso’s Database:
-![image](https://github.com/kyl464/psd-project-lab/assets/74804053/e5764f4c-e529-4fcc-a376-8b01bace7ecf)
+![Uploading image.png…]()
+
 
 <p align="center">Figure 1. Entity Relationship Diagram of RAiso’s Database</p>
 
