@@ -33,6 +33,24 @@ namespace PSDProject.View
         protected global::System.Web.UI.WebControls.TextBox txtQuantity;
 
         /// <summary>
+        /// HiddenUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenUserID;
+
+        /// <summary>
+        /// HiddenStationeryID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenStationeryID;
+
+        /// <summary>
         /// btnAddToCart control.
         /// </summary>
         /// <remarks>

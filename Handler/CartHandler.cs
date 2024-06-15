@@ -1,37 +1,39 @@
 ﻿using PSDProject.Model;
 using PSDProject.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace PSDProject.Handler
 {
     public class CartHandler
     {
-        public static Cart CreateCart(int id, int sid, int quantity)
+        public static Cart CreateOrUpdateCart(int userID, int stationeryID, int quantity)
         {
-            return CartRepository.CreateCart(id, sid, quantity);
+            return CartRepository.CreateCart(userID, stationeryID, quantity);
         }
 
-        public static void UpdateCart(int id, int price, int quantity)
+        public static void UpdateCart(int userID, int stationeryID, int quantity)
         {
-            CartRepository.UpdateCart(id, price, quantity);
+            CartRepository.UpdateCart(userID, stationeryID, quantity);
         }
 
-        public static void DeleteCart(int id, int sid)
+        public static void DeleteCart(int userID, int stationeryID)
         {
-            CartRepository.DeleteCart(id, sid);
+            CartRepository.DeleteCart(userID, stationeryID);
         }
 
-        public static Cart GetCart(int id,int sid)
+        public static Cart GetCart(int userID, int stationeryID)
         {
-            return CartRepository.FindByID(id, sid);
+            return CartRepository.FindByID(userID, stationeryID);
         }
 
         public static List<Cart> GetAllCart()
         {
-            return CartRepository.GetCarts().ToList();
+            return CartRepository.GetCarts();
+        }
+
+        public static List<Cart> GetAllCartByUserID(int userID)
+        {
+            return CartRepository.GetCartsByUserID(userID);
         }
     }
 }

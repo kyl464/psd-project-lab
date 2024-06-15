@@ -1,19 +1,15 @@
-﻿using PSDProject.Model;
-using PSDProject.Factory;
-using System;
+﻿using PSDProject.Factory;
+using PSDProject.Model;
 using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
-using System.Runtime.CompilerServices;
 
 namespace PSDProject.Repository
 {
     public class UserRepository
     {
         public static RAisoDBEntities db = DatabaseSingleton.getInstance();
-       
+
         public static MsUser CreateUser(string name, string gender, string dob, string phone, string address, string password, string role)
         {
             MsUser newUser = UserFactory.CreateUser(name, gender, dob, phone, address, password, role);
@@ -24,21 +20,19 @@ namespace PSDProject.Repository
 
         public static MsUser FindByName(string name)
         {
-            MsUser user = db.MsUsers.Where(x => x.UserName == name).ToList().FirstOrDefault();
-            return user;
+            return db.MsUsers.FirstOrDefault(x => x.UserName == name);
         }
 
         public static MsUser FindByID(int id)
         {
-            MsUser user = db.MsUsers.Where(x => x.UserID == id).ToList().FirstOrDefault();
-            return user;
+            return db.MsUsers.FirstOrDefault(x => x.UserID == id);
         }
 
-        public static Boolean UpdateUser(string name, string gender, string dob, string phone, string address, string password, string role)
+        public static bool UpdateUser(string name, string gender, string dob, string phone, string address, string password, string role)
         {
             MsUser user = FindByName(name);
-            
-            if(user != null)
+
+            if (user != null)
             {
                 user.UserName = name;
                 user.UserGender = gender;
@@ -58,7 +52,7 @@ namespace PSDProject.Repository
             db.SaveChanges();
         }
 
-        public static List<MsUser> GetUsers() 
+        public static List<MsUser> GetUsers()
         {
             return db.MsUsers.ToList();
         }

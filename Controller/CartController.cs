@@ -1,41 +1,51 @@
 ﻿using PSDProject.Handler;
 using PSDProject.Model;
 using PSDProject.Module;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
 
 namespace PSDProject.Controller
 {
     public class CartController
     {
-        public static Result<Cart> Insert(int id, int sid, int quantity)
+        public static Result<Cart> Insert(int userID, int stationeryID, int quantity)
         {
-            Result<Cart> result;
-            
             if (quantity <= 0)
             {
-                return result = new Result<Cart>()
+                return new Result<Cart>()
                 {
                     status = false,
-                    message = "Minimum 1 Pcs",
+                    message = "Quantity must be at least 1",
                     item = null
                 };
             }
 
-            return result = new Result<Cart>
+            Cart cart = CartHandler.CreateOrUpdateCart(userID, stationeryID, quantity);
+            return new Result<Cart>()
             {
                 status = true,
-                message = "Items Added to Cart",
-                item = CartHandler.CreateCart(id, sid, quantity)
+                message = "Item added to cart successfully",
+                item = cart
             };
-
         }
+
         public static List<Cart> GetAllCarts()
         {
             return CartHandler.GetAllCart();
+        }
+
+        public static List<Cart> GetAllCartsByUserID(int userID)
+        {
+            return CartHandler.GetAllCartByUserID(userID);
+        }
+
+        public static void UpdateCart(int userID, int stationeryID, int quantity)
+        {
+            CartHandler.UpdateCart(userID, stationeryID, quantity);
+        }
+
+        public static void DeleteCart(int userID, int stationeryID)
+        {
+            CartHandler.DeleteCart(userID, stationeryID);
         }
     }
 }

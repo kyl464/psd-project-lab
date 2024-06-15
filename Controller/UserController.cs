@@ -4,10 +4,7 @@ using PSDProject.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Permissions;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.UI;
 
 namespace PSDProject.Controller
 {
@@ -20,14 +17,15 @@ namespace PSDProject.Controller
 
         public static MsUser GetUser(string name)
         {
-
             return UserHandler.GetUser(name);
         }
 
         public static Boolean IsAlphanumeric(string password)
         {
-            foreach (char c in password)  {
-                if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+            foreach (char c in password)
+            {
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+                {
                     return true;
                 }
             }
@@ -41,13 +39,12 @@ namespace PSDProject.Controller
 
             int age = today.Year - birthday.Year;
 
-            if(today.Month < birthday.Month || (today.Month == birthday.Month && today.Day < birthday.Day))
+            if (today.Month < birthday.Month || (today.Month == birthday.Month && today.Day < birthday.Day))
             {
                 age--;
             }
 
-            return age < 1? false : true;
-
+            return age >= 1;
         }
 
         public static Result<MsUser> Register(string name, string gender, string dob, string phone, string address, string password, string role)
@@ -55,7 +52,7 @@ namespace PSDProject.Controller
             Result<MsUser> result;
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(dob) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(password))
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "All fields must be filled",
@@ -64,7 +61,7 @@ namespace PSDProject.Controller
             }
             if (name.Length < 5 || name.Length > 50)
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "Name must be between 5 to 50 characters",
@@ -73,7 +70,7 @@ namespace PSDProject.Controller
             }
             if (UserHandler.GetUser(name) != null)
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "User already exist",
@@ -82,7 +79,7 @@ namespace PSDProject.Controller
             }
             if (!IsAlphanumeric(password))
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "Password must be alphanumeric",
@@ -91,7 +88,7 @@ namespace PSDProject.Controller
             }
             if (!ageAtLeastOne(dob))
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "User must be at least 1 year old",
@@ -99,51 +96,51 @@ namespace PSDProject.Controller
                 };
             }
 
-            return result = new Result<MsUser>()
+            return new Result<MsUser>()
             {
                 status = true,
                 message = "Register successful",
                 item = UserHandler.CreateUser(name, gender, dob, phone, address, password, role)
             };
-
         }
 
-        public static Result<MsUser> Login(string username, string password, string confirm) {
-
+        public static Result<MsUser> Login(string username, string password, string confirm)
+        {
             MsUser user = GetUser(username);
-            Result<MsUser> result;
-            if (user == null) {
-                return result = new Result<MsUser>()
+            if (user == null)
+            {
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "User not found",
-                    item = user
+                    item = null
                 };
             }
 
-            if(user.UserPassword != password) {
-                return result = new Result<MsUser>()
+            if (user.UserPassword != password)
+            {
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "Wrong Password",
-                    item = user
+                    item = null
                 };
             }
 
-            if(confirm != password)
+            if (confirm != password)
             {
-                return result = new Result<MsUser>()
+                return new Result<MsUser>()
                 {
                     status = false,
                     message = "Password does not match",
-                    item = user
+                    item = null
                 };
             }
 
-            return result = new Result<MsUser>()
+            return new Result<MsUser>()
             {
                 status = true,
-                message = "Login Succesful",
+                message = "Login Successful",
                 item = user
             };
         }

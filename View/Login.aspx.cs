@@ -3,10 +3,7 @@ using PSDProject.Model;
 using PSDProject.Module;
 using PSDProject.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -29,22 +26,25 @@ namespace PSDProject.View
             lbl_error.Text = result.message;
             Boolean rememberMe = check_rememberme.Checked;
 
-            HttpCookie cookie = new HttpCookie("session");
-            cookie.Values["role"] = result.item.UserRole;
-
-            if (rememberMe)
-            {
-                cookie.Values["name"] = name;             
-            }
-
             if (result.status)
             {
                 lbl_error.Visible = false;
-                cookie.Expires = DateTime.Now.AddDays(1);
+                HttpCookie cookie = new HttpCookie("session");
+                cookie.Values["role"] = result.item.UserRole;
+                cookie.Values["userID"] = result.item.UserID.ToString(); // Simpan userID dalam cookie
+
+                if (rememberMe)
+                {
+                    cookie.Expires = DateTime.Now.AddDays(1);
+                }
                 Response.Cookies.Add(cookie);
                 Response.Redirect("~/View/Home.aspx");
-                return;
             }
         }
+
+
+
+
+
     }
 }
