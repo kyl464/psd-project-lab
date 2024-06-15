@@ -23,18 +23,30 @@ namespace PSDProject.View
             {
                 Page.MasterPageFile = "~/Master/GuestMaster.Master";
             }
-            
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie cookie = Request.Cookies["session"];
-            if (cookie == null || cookie["role"] != "Admin")
+            if (cookie != null)
             {
-                btn_insert.Visible = false;
+                int userID;
+                if (int.TryParse(cookie.Values["userID"], out userID))
+                {
+                    Session["UserID"] = userID;
+                }
             }
 
-            gv_stationeries.DataSource = StationeryController.GetAllStationeries();
-            gv_stationeries.DataBind();
+            if (!IsPostBack)
+            {
+                if (cookie == null || cookie["role"] != "Admin")
+                {
+                    btn_insert.Visible = false;
+                }
+
+                gv_stationeries.DataSource = StationeryController.GetAllStationeries();
+                gv_stationeries.DataBind();
+            }
         }
 
         protected void btn_insert_Click(object sender, EventArgs e)
@@ -62,6 +74,5 @@ namespace PSDProject.View
                 }
             }
         }
-
     }
 }
