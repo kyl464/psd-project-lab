@@ -1,7 +1,9 @@
 ﻿using PSDProject.Controller;
+using PSDProject.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,8 +16,7 @@ namespace PSDProject.View
         {
             base.OnPreInit(e);
 
-            HttpCookie cookie = Request.Cookies["session"];
-            if (cookie != null)
+            if (Session["userID"] != null)
             {
                 Page.MasterPageFile = "~/Master/LoggedInMaster.Master";
             }
@@ -27,26 +28,21 @@ namespace PSDProject.View
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["session"];
-            if (cookie != null)
-            {
-                int userID;
-                if (int.TryParse(cookie.Values["userID"], out userID))
-                {
-                    Session["UserID"] = userID;
-                }
-            }
+            gv_stationeries.DataSource = StationeryController.GetAllStationeries();
+            gv_stationeries.DataBind();
 
             if (!IsPostBack)
             {
-                if (cookie == null || cookie["role"] != "Admin")
+                HttpCookie cookie = Request.Cookies["session"];
+                if (cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userName"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     btn_insert.Visible = false;
                     gv_stationeries.Columns[3].Visible = false;
                 }
-
-                gv_stationeries.DataSource = StationeryController.GetAllStationeries();
-                gv_stationeries.DataBind();
             }
         }
 
@@ -62,8 +58,7 @@ namespace PSDProject.View
                 HyperLink hlStationeryDetails = (HyperLink)e.Row.FindControl("hlStationeryDetails");
                 Label lblStationeryName = (Label)e.Row.FindControl("lblStationeryName");
 
-                HttpCookie cookie = Request.Cookies["session"];
-                if (cookie == null || (cookie["role"] != "Admin" && cookie["role"] != "Customer"))
+                if (Session["userID"] == null || (Session["userRole"].ToString().ToString() != "Admin" && Session["userRole"].ToString() != "Customer"))
                 {
                     hlStationeryDetails.Visible = false;
                     lblStationeryName.Visible = true;

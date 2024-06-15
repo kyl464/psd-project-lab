@@ -1,5 +1,6 @@
 ﻿using PSDProject.Controller;
 using PSDProject.Model;
+using PSDProject.Module;
 using System;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -12,6 +13,16 @@ namespace PSDProject.View
         {
             if (!IsPostBack)
             {
+                HttpCookie cookie = Request.Cookies["session"];
+                if(cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null || Session["userRole"].ToString() != "Customer")
+                {
+                    Response.Redirect("~/View/Login.aspx");
+                    return;
+                }
                 BindCartItems();
             }
         }
@@ -19,9 +30,9 @@ namespace PSDProject.View
         protected void gvCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int userID = GetLoggedInUserID();
-            int stationeryID = Convert.ToInt32(gvCart.DataKeys[e.RowIndex].Value);
+            int stationeryID = Convert.ToInt32(gvCart.Rows[e.RowIndex].Cells[0].Text);
 
-            CartController.DeleteCart(userID, stationeryID);
+            CartController.DeleteCartByID(userID, stationeryID);
             BindCartItems();
         }
 
@@ -30,7 +41,7 @@ namespace PSDProject.View
             foreach (GridViewRow row in gvCart.Rows)
             {
                 int userID = GetLoggedInUserID();
-                int stationeryID = Convert.ToInt32(gvCart.DataKeys[row.RowIndex].Value);
+                int stationeryID = Convert.ToInt32(row.Cells[0].Text);
                 int newQuantity = Convert.ToInt32((row.Cells[2].FindControl("txtQuantity") as TextBox).Text);
 
                 CartController.UpdateCart(userID, stationeryID, newQuantity);
@@ -54,12 +65,11 @@ namespace PSDProject.View
 
         public string GetStationeryName(int stationeryID)
         {
-            return StationeryController.GetStationery(stationeryID).StationeryName;
+            return StationeryController.GetStationeryByID(stationeryID).StationeryName;
         }
         private int GetLoggedInUserID()
         {
-            HttpCookie cookie = Request.Cookies["session"];
-            return int.Parse(cookie["userID"]);
+            return int.Parse(Session["userID"].ToString());
         }
     }
 }

@@ -15,7 +15,11 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            HttpCookie cookie = Request.Cookies["session"];
+            if (cookie != null)
+            {
+                Response.Redirect("~/View/Home.aspx");
+            }
         }
 
         protected void Register_Button_Click(object sender, EventArgs e)
@@ -32,19 +36,17 @@ namespace PSDProject.View
             lbl_error.Text = result.message;
             Boolean rememberMe = check_rememberme.Checked;
 
-            HttpCookie cookie = new HttpCookie("session");
-
             if (rememberMe)
             {
-                cookie.Values["name"] = name;
-                cookie.Values["role"] = result.item.UserRole;
+                HttpCookie cookie = SessionCookie.createCookie(result.item.UserID.ToString(), name, role);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
             }
 
             if (result.status)
             {
                 lbl_error.Visible = false;
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(cookie);
+                SessionCookie.createSession(Session, result.item.UserID.ToString(), name, role);
                 Response.Redirect("~/View/Home.aspx");
                 return;
             }           

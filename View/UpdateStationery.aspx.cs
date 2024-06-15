@@ -16,15 +16,19 @@ namespace PSDProject.View
         {
             if(!IsPostBack)
             {
-                HttpCookie cookie = HttpContext.Current.Request.Cookies["session"];
-                if(cookie == null || cookie["role"] != "Admin")
+                HttpCookie cookie = Request.Cookies["session"];
+                if(cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     Response.Redirect("~/View/Login.aspx");
                     return;
                 }
 
                 int id = GetStationeryID();
-                MsStationery stationery = StationeryController.GetStationery(id);
+                MsStationery stationery = StationeryController.GetStationeryByID(id);
                 txt_stationeryname.Text = stationery.StationeryName;
                 txt_stationeryprice.Text = stationery.StationeryPrice.ToString();
             }
@@ -33,7 +37,17 @@ namespace PSDProject.View
 
         protected int GetStationeryID()
         {
-            return int.Parse(Request["id"]);
+            int id = 0;
+            try
+            {
+                id = int.Parse(Request["id"]);
+                return id;
+            }
+            catch (ArgumentNullException ex)
+            {
+                    Response.Redirect("~/View/Home.aspx");
+            }
+            return id;
         }
 
         protected void btn_update_Click(object sender, EventArgs e)

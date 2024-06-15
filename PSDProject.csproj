@@ -161,6 +161,7 @@
     <Compile Include="Model\TransactionHeader.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Module\SessionCookie.cs" />
     <Compile Include="Module\Json.cs" />
     <Compile Include="Module\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

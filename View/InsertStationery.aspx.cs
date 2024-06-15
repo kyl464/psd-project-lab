@@ -14,7 +14,19 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                HttpCookie cookie = Request.Cookies["session"];
+                if (cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
+                {
+                    Response.Redirect("~/View/Login.aspx");
+                    return;
+                }
+            }
         }
 
         protected void btn_insert_Click(object sender, EventArgs e)
@@ -30,7 +42,7 @@ namespace PSDProject.View
             }
             else
             {
-                Response.Redirect("~/View/InsertStationery.aspx");
+                Response.Redirect("~/View/Home.aspx");
             }
 
         }

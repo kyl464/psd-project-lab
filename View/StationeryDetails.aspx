@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/GuestMaster.Master" AutoEventWireup="true" CodeBehind="StationeryDetails.aspx.cs" Inherits="PSDProject.View.StationeryDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/LoggedInMaster.Master" AutoEventWireup="true" CodeBehind="StationeryDetails.aspx.cs" Inherits="PSDProject.View.StationeryDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentBody" runat="server">
     <h1>Stationery Details</h1>
 

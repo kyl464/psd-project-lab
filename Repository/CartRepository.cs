@@ -68,7 +68,7 @@ namespace PSDProject.Repository
             }
         }
 
-        public static void DeleteCart(int userID, int stationeryID)
+        public static void DeleteCartByID(int userID, int stationeryID)
         {
             Cart cart = FindByID(userID, stationeryID);
             if (cart != null)
@@ -76,6 +76,12 @@ namespace PSDProject.Repository
                 db.Carts.Remove(cart);
                 db.SaveChanges();
             }
+        }
+
+        public static void DeleteCart(Cart cart)
+        {
+            db.Carts.Remove(cart);
+            db.SaveChanges();
         }
 
         public static Cart FindByID(int userID, int stationeryID)

@@ -16,9 +16,14 @@ namespace PSDProject.Handler
             CartRepository.UpdateCart(userID, stationeryID, quantity);
         }
 
-        public static void DeleteCart(int userID, int stationeryID)
+        public static void DeleteCartByID(int userID, int stationeryID)
         {
-            CartRepository.DeleteCart(userID, stationeryID);
+            CartRepository.DeleteCartByID(userID, stationeryID);
+        }
+
+        public static void DeleteCart(Cart cart)
+        {
+            CartRepository.DeleteCart(cart);
         }
 
         public static Cart GetCart(int userID, int stationeryID)

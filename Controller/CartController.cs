@@ -48,14 +48,14 @@ namespace PSDProject.Controller
             CartHandler.UpdateCart(userID, stationeryID, quantity);
         }
 
-        public static void DeleteCart(int userID, int stationeryID)
+        public static void DeleteCartByID(int userID, int stationeryID)
         {
-            CartHandler.DeleteCart(userID, stationeryID);
+            CartHandler.DeleteCartByID(userID, stationeryID);
         }
 
-        public static void DeleteCartByStationeryID(int stationeryID)
+        public static void DeleteCart(Cart cart)
         {
-           
+           CartHandler.DeleteCart(cart);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace PSDProject.View
                     int stationeryID = Convert.ToInt32(Request.QueryString["ID"]);
                     // HiddenStationeryID.Value = stationeryID.ToString();
 
-                    MsStationery stationery = StationeryController.GetStationery(stationeryID);
+                    MsStationery stationery = StationeryController.GetStationeryByID(stationeryID);
                     BindStationeryData(stationery);
                 }
             }

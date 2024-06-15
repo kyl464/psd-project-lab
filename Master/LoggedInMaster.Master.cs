@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSDProject.Module;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,12 +16,16 @@ namespace PSDProject.Master
             if (!IsPostBack)
             {
                 HttpCookie cookie = Request.Cookies["session"];
-                if (cookie == null)
+                if(cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null)
                 {
                     Response.Redirect("~/View/Login.aspx");
                     return;
                 }
-                if (cookie["role"] == "Customer")
+                if (Session["userRole"].ToString() == "Customer")
                 {
                     btn_report.Visible = false;
                 }
@@ -40,12 +45,11 @@ namespace PSDProject.Master
         protected void btn_logout_Click(object sender, EventArgs e)
         {
             HttpCookie cookie = Request.Cookies["session"];
-
             if(cookie != null)
             {
                 cookie.Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies.Add(cookie);
-            }
+            }                  
             Session.Clear();
             Response.Redirect("~/View/Login.aspx");
         }

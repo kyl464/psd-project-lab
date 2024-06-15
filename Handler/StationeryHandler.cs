@@ -21,10 +21,18 @@ namespace PSDProject.Handler
 
         public static void DeleteStationery(int id)
         {
+            List<Cart> carts = CartHandler.GetAllCartByStationeryID(id);
+            if(carts != null)
+            {
+                foreach(Cart cart in carts)
+                {
+                    CartHandler.DeleteCart(cart);
+                }
+            }
             StationeryRepository.DeleteStationery(id);
         }
 
-        public static MsStationery GetStationery(string name)
+        public static MsStationery GetStationeryByName(string name)
         {
             return StationeryRepository.FindStationeryByName(name);
         }
