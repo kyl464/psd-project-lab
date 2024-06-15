@@ -34,14 +34,14 @@ namespace PSDProject.View
             {
                 // Misalnya UserID diambil dari session
                 int userID = Convert.ToInt32(Session["UserID"]);
-                HiddenUserID.Value = userID.ToString();
+                // HiddenUserID.Value = userID.ToString();
 
                 if (Request.QueryString["ID"] != null)
                 {
                     int stationeryID = Convert.ToInt32(Request.QueryString["ID"]);
-                    HiddenStationeryID.Value = stationeryID.ToString();
+                    // HiddenStationeryID.Value = stationeryID.ToString();
 
-                    MsStationery stationery = StationeryHandler.GetStationeryById(stationeryID);
+                    MsStationery stationery = StationeryController.GetStationery(stationeryID);
                     BindStationeryData(stationery);
                 }
             }
@@ -55,10 +55,11 @@ namespace PSDProject.View
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                int userID = int.Parse(HiddenUserID.Value);
-                int stationeryID = int.Parse(HiddenStationeryID.Value);
+                int userID = Convert.ToInt32(Session["UserID"]);
+                int stationeryID = Convert.ToInt32(Request.QueryString["ID"]);
                 int quantity = int.Parse(txtQuantity.Text);
 
                 // Logging values to debug

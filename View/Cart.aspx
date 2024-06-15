@@ -7,7 +7,7 @@
     <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" OnRowDeleting="gvCart_RowDeleting">
         <Columns>
             <asp:BoundField DataField="StationeryID" HeaderText="Stationery ID" />
-            <asp:BoundField DataField="StationeryName" HeaderText="Stationery Name" />
+            <asp:BoundField DataField="MsStationery.StationeryName" HeaderText="Stationery Name" />
             <asp:TemplateField HeaderText="Quantity">
                 <ItemTemplate>
                     <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:TextBox>

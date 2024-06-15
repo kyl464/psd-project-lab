@@ -51,6 +51,10 @@ namespace PSDProject.View
             gvCart.DataBind();
         }
 
+        public string GetStationeryName(int stationeryID)
+        {
+            return StationeryController.GetStationery(stationeryID).StationeryName;
+        }
         private int GetLoggedInUserID()
         {
             // Logic to retrieve logged-in user ID, possibly from session or cookie

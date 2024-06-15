@@ -1,6 +1,7 @@
 ﻿using PSDProject.Handler;
 using PSDProject.Model;
 using PSDProject.Module;
+using PSDProject.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,11 @@ namespace PSDProject.Controller
         public static List<MsStationery> GetAllStationeries()
         {
             return StationeryHandler.GetAllStationeris();
+        }
+
+        public static MsStationery GetStationery(int id)
+        {
+            return StationeryHandler.GetStationeryById(id);
         }
     }
 }

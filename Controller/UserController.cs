@@ -49,7 +49,7 @@ namespace PSDProject.Controller
 
         public static Result<MsUser> Register(string name, string gender, string dob, string phone, string address, string password, string role)
         {
-            Result<MsUser> result;
+            
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(dob) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(password))
             {
                 return new Result<MsUser>()
