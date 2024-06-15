@@ -21,6 +21,11 @@ namespace PSDProject.Repository
             return db.Carts.Where(c => c.UserID == userID).ToList();
         }
 
+        public static List<Cart> GetCartsByStationeryId(int stationeryID)
+        {
+            return db.Carts.Where(cart => cart.StationeryID == stationeryID).ToList();
+        }
+
         public static Cart CreateCart(int userID, int stationeryID, int quantity)
         {
             var existingCart = db.Carts.FirstOrDefault(c => c.UserID == userID && c.StationeryID == stationeryID);

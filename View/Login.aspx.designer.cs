@@ -11,7 +11,7 @@ namespace PSDProject.View
 {
 
 
-    public partial class RegisterPage
+    public partial class Login
     {
 
         /// <summary>

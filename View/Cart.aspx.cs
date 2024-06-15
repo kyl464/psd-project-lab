@@ -1,6 +1,7 @@
 ﻿using PSDProject.Controller;
 using PSDProject.Model;
 using System;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace PSDProject.View
@@ -41,7 +42,7 @@ namespace PSDProject.View
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
             // Redirect to checkout page or handle checkout process
-            Response.Redirect("~/Checkout.aspx");
+            Response.Redirect("~/View/Checkout.aspx");
         }
 
         private void BindCartItems()
@@ -57,8 +58,8 @@ namespace PSDProject.View
         }
         private int GetLoggedInUserID()
         {
-            // Logic to retrieve logged-in user ID, possibly from session or cookie
-            return 1; // Dummy value, replace with actual logic to get user ID
+            HttpCookie cookie = Request.Cookies["session"];
+            return int.Parse(cookie["userID"]);
         }
     }
 }

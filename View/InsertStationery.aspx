@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Insert Stationery" Language="C#" MasterPageFile="~/Master/LoggedInMaster.Master" AutoEventWireup="true" CodeBehind="InsertStationery.aspx.cs" Inherits="PSDProject.View.InsertStationery" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+<asp:Content ID="InsertStationery" ContentPlaceHolderID="ContentBody" runat="server">
     <h1>Insert Stationery</h1>
     <div>
         <asp:Label ID="lbl_name" runat="server" Text="Stationery Name: "></asp:Label>

@@ -94,12 +94,14 @@
     </Content>
     <Content Include="Style\masterstyle.css" />
     <Content Include="View\Cart.aspx" />
+    <Content Include="View\Checkout.aspx" />
     <Content Include="View\InsertStationery.aspx" />
     <Content Include="View\Register.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\StationeryDetails.aspx" />
     <Content Include="View\TransactionHistory.aspx" />
+    <Content Include="View\UpdateStationery.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +115,7 @@
     <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\StationeryHandler.cs" />
+    <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Handler\UserHandler.cs" />
     <Compile Include="Master\LoggedInMaster.Master.cs">
       <DependentUpon>LoggedInMaster.Master</DependentUpon>
@@ -174,6 +177,13 @@
     <Compile Include="View\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\InsertStationery.aspx.cs">
       <DependentUpon>InsertStationery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -215,6 +225,13 @@
     </Compile>
     <Compile Include="View\TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateStationery.aspx.cs">
+      <DependentUpon>UpdateStationery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UpdateStationery.aspx.designer.cs">
+      <DependentUpon>UpdateStationery.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

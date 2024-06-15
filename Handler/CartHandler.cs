@@ -35,5 +35,12 @@ namespace PSDProject.Handler
         {
             return CartRepository.GetCartsByUserID(userID);
         }
+
+        public static List<Cart> GetAllCartByStationeryID(int stationeryID)
+        {
+            return CartRepository.GetCartsByStationeryId(stationeryID);
+        }
+
+        
     }
 }

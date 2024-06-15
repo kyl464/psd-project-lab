@@ -38,6 +38,11 @@ namespace PSDProject.Controller
             return CartHandler.GetAllCartByUserID(userID);
         }
 
+        public static List<Cart> GetAllCartsByStationeryID(int stationeryID)
+        {
+            return CartHandler.GetAllCartByStationeryID(stationeryID);
+        }
+
         public static void UpdateCart(int userID, int stationeryID, int quantity)
         {
             CartHandler.UpdateCart(userID, stationeryID, quantity);
@@ -46,6 +51,11 @@ namespace PSDProject.Controller
         public static void DeleteCart(int userID, int stationeryID)
         {
             CartHandler.DeleteCart(userID, stationeryID);
+        }
+
+        public static void DeleteCartByStationeryID(int stationeryID)
+        {
+           
         }
     }
 }

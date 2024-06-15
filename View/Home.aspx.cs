@@ -42,6 +42,7 @@ namespace PSDProject.View
                 if (cookie == null || cookie["role"] != "Admin")
                 {
                     btn_insert.Visible = false;
+                    gv_stationeries.Columns[3].Visible = false;
                 }
 
                 gv_stationeries.DataSource = StationeryController.GetAllStationeries();
@@ -73,6 +74,22 @@ namespace PSDProject.View
                     lblStationeryName.Visible = false;
                 }
             }
+        }
+
+        protected void gv_stationeries_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            GridViewRow row = gv_stationeries.Rows[e.RowIndex];
+            int stationeryId = int.Parse(row.Cells[0].Text);
+            StationeryController.DeleteStationery(stationeryId);
+            gv_stationeries.DataSource = StationeryController.GetAllStationeries();
+            gv_stationeries.DataBind();
+
+        }
+
+        protected void gv_stationeries_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string id = gv_stationeries.Rows[e.NewEditIndex].Cells[0].Text;
+            Response.Redirect("~/View/UpdateStationery.aspx?id=" + id);
         }
     }
 }

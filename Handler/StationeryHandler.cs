@@ -14,14 +14,14 @@ namespace PSDProject.Handler
             return StationeryRepository.CreateStationery(name, price);
         }
 
-        public static Boolean UpdateStationery(string name, int price)
+        public static MsStationery UpdateStationery(int id, string name, int price)
         {
-            return StationeryRepository.UpdateStationery(name, price);
+            return StationeryRepository.UpdateStationery(id, name, price);
         }
 
-        public static void DeleteStationery(string name)
+        public static void DeleteStationery(int id)
         {
-            StationeryRepository.DeleteStationery(name);
+            StationeryRepository.DeleteStationery(id);
         }
 
         public static MsStationery GetStationery(string name)

@@ -30,18 +30,18 @@ namespace PSDProject.Repository
             return msStationery;
         }
 
-        public static Boolean UpdateStationery(string name, int price)
+        public static MsStationery UpdateStationery(int id, string name, int price)
         {
-            MsStationery msStationery = FindStationeryByName(name);
+            MsStationery msStationery = FindStationeryById(id);
             if(msStationery != null)
             {
                 msStationery.StationeryName = name;
                 msStationery.StationeryPrice = price;
                 db.SaveChanges();
-                return true;
+                return msStationery;
             }
             
-            return false;
+            return null;
         }
         public static MsStationery FindStationeryById(int stationeryID)
         {
@@ -50,9 +50,10 @@ namespace PSDProject.Repository
         }
 
 
-        public static void DeleteStationery(string name)
+        public static void DeleteStationery(int id)
         {
-            db.MsStationeries.Remove(FindStationeryByName(name));
+
+            db.MsStationeries.Remove(FindStationeryById(id));
             db.SaveChanges();
         }
 

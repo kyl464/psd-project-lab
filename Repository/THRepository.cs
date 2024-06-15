@@ -12,11 +12,12 @@ namespace PSDProject.Repository
     {
         public static RAisoDBEntities db = DatabaseSingleton.getInstance();
 
-        public static void CreateTH(int transactionID, int userID, DateTime transactionDate)
+        public static TransactionHeader CreateTH(int userID, DateTime transactionDate)
         {
-            TransactionHeader transactionHeader = THFactory.CreateTH(transactionID, userID, transactionDate);
+            TransactionHeader transactionHeader = THFactory.CreateTH(userID, transactionDate);
             db.TransactionHeaders.Add(transactionHeader);
             db.SaveChanges();
+            return transactionHeader;
         }
 
         
