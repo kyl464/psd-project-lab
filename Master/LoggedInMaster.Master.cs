@@ -13,24 +13,26 @@ namespace PSDProject.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            HttpCookie cookie = Request.Cookies["session"];
+            if (cookie != null)
             {
-                HttpCookie cookie = Request.Cookies["session"];
-                if (cookie != null)
-                {
-                    SessionCookie.createSession(Session, cookie);
-                }
+                SessionCookie.createSession(Session, cookie);
+            }
+            if (Session["userID"] == null)
+            {
+                Response.Redirect("~/View/Login.aspx");
+            }
                 if (Session["userRole"].ToString() == "Customer")
-                {
-                    btn_report.Visible = false;
-                }
-                else
-                {
-                    btn_transaction.Visible = false;
-                    btn_cart.Visible = false;
-                }
+            {
+                btn_report.Visible = false;
+            }
+            else
+            {
+                btn_transaction.Visible = false;
+                btn_cart.Visible = false;
             }
         }
+        
 
         protected void btn_home_Click(object sender, EventArgs e)
         {

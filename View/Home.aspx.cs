@@ -33,14 +33,13 @@ namespace PSDProject.View
 
         protected void Page_Load(object sender, EventArgs e)
         {
- 
+            HttpCookie cookie = Request.Cookies["session"];
+            if (cookie != null)
+            {
+                SessionCookie.createSession(Session, cookie);
+            }
             if (!IsPostBack)
             {
-                HttpCookie cookie = Request.Cookies["session"];
-                if (cookie != null)
-                {
-                    SessionCookie.createSession(Session, cookie);
-                }
                 if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     btn_insert.Visible = false;

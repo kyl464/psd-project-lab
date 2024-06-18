@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PSDProject.Controller;
 using PSDProject.Model;
+using PSDProject.Module;
 
 namespace PSDProject.View
 {
@@ -17,10 +18,16 @@ namespace PSDProject.View
             HttpCookie cookie = Request.Cookies["session"];
             if (cookie != null)
             {
+                SessionCookie.createSession(Session, cookie);
+            }
+            
+            if (Session["userID"] != null)
+            {
                 Page.MasterPageFile = "~/Master/LoggedInMaster.Master";
             }
             else
             {
+                Response.Redirect("~/View/Login.aspx");
                 Page.MasterPageFile = "~/Master/GuestMaster.Master";
             }
         }
@@ -43,8 +50,7 @@ namespace PSDProject.View
 
         private int GetLoggedInUserID()
         {
-            HttpCookie cookie = Request.Cookies["session"];
-            return int.Parse(cookie["userID"]);
+            return int.Parse(Session["userID"].ToString());
         }
 
         protected void gv_TransactionHistory_SelectedIndexChanged(object sender, EventArgs e)

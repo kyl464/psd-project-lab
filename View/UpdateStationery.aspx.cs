@@ -14,13 +14,13 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            HttpCookie cookie = Request.Cookies["session"];
+            if (cookie != null)
             {
-                HttpCookie cookie = Request.Cookies["session"];
-                if (cookie != null)
-                {
-                    SessionCookie.createSession(Session, cookie);
-                }
+                SessionCookie.createSession(Session, cookie);
+            }
+            if (!IsPostBack)
+            {
                 if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     Response.Redirect("~/View/Login.aspx");

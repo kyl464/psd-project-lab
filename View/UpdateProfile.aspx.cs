@@ -22,7 +22,7 @@ namespace PSDProject.View
                 {
                     txt_name.Text = user.UserName;
                     radio_gender.SelectedValue = user.UserGender;
-                    txt_dob.Text = user.UserDOB.Date.ToShortTimeString();
+                    txt_dob.Text = user.UserDOB.Date.ToShortDateString();
                     txt_phone.Text = user.UserPhone;
                     txt_address.Text = user.UserAddress;
                 }
@@ -32,6 +32,7 @@ namespace PSDProject.View
 
         protected void btn_update_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(Session["userID"].ToString());
             string name = txt_name.Text;
             string gender = radio_gender.SelectedValue;
             string dob =  txt_dob.Text;
@@ -39,10 +40,17 @@ namespace PSDProject.View
             string address = txt_address.Text;
             string password = txt_password.Text;
             string confirm = txt_confirm.Text;
-            Result<MsUser> result = UserController.UpdateUser(name, gender, dob, phone, address, password, confirm);
+            Result<MsUser> result = UserController.UpdateUser(id, name, gender, dob, phone, address, password, confirm);
 
             if(result.status)
             {
+                HttpCookie cookie = Request.Cookies["session"];
+                if(cookie != null)
+                {
+                    cookie.Values["userName"] = result.item.UserName;
+                    Response.Cookies.Add(cookie);
+                }
+                Session["userName"] = result.item.UserName;
                 Response.Redirect("~/View/Profile.aspx");
             }
             else

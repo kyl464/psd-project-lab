@@ -24,12 +24,12 @@ namespace PSDProject.Controller
         {
             foreach (char c in password)
             {
-                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+                if (!char.IsLetterOrDigit(c))
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
 
         public static Boolean ageAtLeastOne(string dob)
@@ -154,7 +154,7 @@ namespace PSDProject.Controller
             };
         }
 
-        public static Result<MsUser> UpdateUser(string name, string gender, string dob, string phone, string address, string password, string confirm)
+        public static Result<MsUser> UpdateUser(int id, string name, string gender, string dob, string phone, string address, string password, string confirm)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(dob) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(password))
             {
@@ -174,7 +174,7 @@ namespace PSDProject.Controller
                     item = null
                 };
             }
-            if (GetUser(name) != null)
+            if (GetUser(name) != null && GetUser(name).UserID != id)
             {
                 return new Result<MsUser>()
                 {
@@ -213,7 +213,7 @@ namespace PSDProject.Controller
 
             return new Result<MsUser>()
             {
-                status = UserHandler.UpdateUser(name, gender, dob, phone, address, password),
+                status = UserHandler.UpdateUser(id, name, gender, dob, phone, address, password),
                 message = "Update successful",
                 item = GetUser(name)
             };

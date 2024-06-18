@@ -16,7 +16,7 @@
 
     <div>
         <asp:Label ID="lbl_dob" runat="server" Text="DOB: "></asp:Label>
-        <asp:TextBox ID="txt_dob" TextMode="DateTime" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txt_dob" TextMode="Date" runat="server"></asp:TextBox>
     </div>
 
     <div>
