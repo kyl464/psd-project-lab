@@ -1,4 +1,5 @@
 ﻿using PSDProject.Controller;
+using PSDProject.Handler;
 using PSDProject.Model;
 using PSDProject.Module;
 using System;
@@ -14,50 +15,59 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {
-                string name = Request["name"];
-                MsUser user = UserController.GetUser(name);
-                if(!string.IsNullOrEmpty(name))
-                {
-                    txt_name.Text = user.UserName;
-                    radio_gender.SelectedValue = user.UserGender;
-                    txt_dob.Text = user.UserDOB.Date.ToShortDateString();
-                    txt_phone.Text = user.UserPhone;
-                    txt_address.Text = user.UserAddress;
-                }
-                
-            }    
+        
         }
 
-        protected void btn_update_Click(object sender, EventArgs e)
+        protected void Btn_UpdateProfile_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(Session["userID"].ToString());
-            string name = txt_name.Text;
-            string gender = radio_gender.SelectedValue;
-            string dob =  txt_dob.Text;
-            string phone = txt_phone.Text;
-            string address = txt_address.Text;
-            string password = txt_password.Text;
-            string confirm = txt_confirm.Text;
-            Result<MsUser> result = UserController.UpdateUser(id, name, gender, dob, phone, address, password, confirm);
+            string id = Request["UserID"];
+            MsUser user = UserHandler.GetUserByID(id);
+            string username = Txt_Username.Text;
+            string address = Txt_Email.Text;
+            string gender = RBtn_Gender.SelectedValue;
+            string dob = Txt_DOB.Text;
 
-            if(result.status)
+            Result<MsUser> updatedProfile = UserHandler.checkUpdateProfile(user.UserID, username, address, gender, dob);
+            if (!updatedProfile.status)
             {
-                HttpCookie cookie = Request.Cookies["session"];
-                if(cookie != null)
-                {
-                    cookie.Values["userName"] = result.item.UserName;
-                    Response.Cookies.Add(cookie);
-                }
-                Session["userName"] = result.item.UserName;
-                Response.Redirect("~/View/Profile.aspx");
-            }
-            else
-            {
-                lbl_error.Text = result.message;
+                Lbl_error.Visible = true;
+                Lbl_error.Text = updatedProfile.message;
+                return;
             }
 
+            Lbl_scs.Visible = true;
+            Lbl_scs.Text = updatedProfile.message;
+        }
+
+        protected void btn_updatePassword_Click(object sender, EventArgs e)
+        {
+            string id = Request["ID"];
+            MsUser x = UserHandler.GetUserByID(id);
+            string newPassword = Txt_newPassword.Text;
+            string confirmationPassword = Txt_confirmationPassword.Text;
+
+            Result<MsUser> checkPassword = UserController.validateConfirmationPassword(newPassword, confirmationPassword);
+            if (!checkPassword.status)
+            {
+                Lbl_error2.Visible = true;
+                Lbl_error2.Text = checkPassword.message;
+                Lbl_scs2.Visible = false;
+                return;
+            }
+
+            Result<MsUser> updatePassword = UserHandler.checkUpdatePassword(x.UserID, x.UserPassword, newPassword, confirmationPassword);
+            if (!updatePassword.status)
+            {
+                Lbl_error2.Visible = true;
+                Lbl_error2.Text = updatePassword.message;
+                Lbl_scs2.Visible = false;
+                return;
+            }
+
+            Lbl_error2.Text = "";
+            Lbl_error2.Visible = false;
+            Lbl_scs2.Visible = true;
+            Lbl_scs2.Text = updatePassword.message;
         }
     }
 }

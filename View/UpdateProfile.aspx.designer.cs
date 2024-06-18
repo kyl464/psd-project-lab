@@ -15,147 +15,174 @@ namespace PSDProject.View
     {
 
         /// <summary>
-        /// lbl_name control.
+        /// Lbl_Username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_name;
+        protected global::System.Web.UI.WebControls.Label Lbl_Username;
 
         /// <summary>
-        /// txt_name control.
+        /// Txt_Username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_name;
+        protected global::System.Web.UI.WebControls.TextBox Txt_Username;
 
         /// <summary>
-        /// lbl_gender control.
+        /// Lbl_Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_gender;
+        protected global::System.Web.UI.WebControls.Label Lbl_Email;
 
         /// <summary>
-        /// radio_gender control.
+        /// Txt_Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList radio_gender;
+        protected global::System.Web.UI.WebControls.TextBox Txt_Email;
 
         /// <summary>
-        /// lbl_dob control.
+        /// Lbl_Gender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_dob;
+        protected global::System.Web.UI.WebControls.Label Lbl_Gender;
 
         /// <summary>
-        /// txt_dob control.
+        /// RBtn_Gender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_dob;
+        protected global::System.Web.UI.WebControls.RadioButtonList RBtn_Gender;
 
         /// <summary>
-        /// lbl_phone control.
+        /// Lbl_DOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_phone;
+        protected global::System.Web.UI.WebControls.Label Lbl_DOB;
 
         /// <summary>
-        /// txt_phone control.
+        /// Txt_DOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_phone;
+        protected global::System.Web.UI.WebControls.TextBox Txt_DOB;
 
         /// <summary>
-        /// lbl_address control.
+        /// Lbl_error control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_address;
+        protected global::System.Web.UI.WebControls.Label Lbl_error;
 
         /// <summary>
-        /// txt_address control.
+        /// Lbl_scs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_address;
+        protected global::System.Web.UI.WebControls.Label Lbl_scs;
 
         /// <summary>
-        /// lbl_password control.
+        /// Btn_UpdateProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_password;
+        protected global::System.Web.UI.WebControls.Button Btn_UpdateProfile;
 
         /// <summary>
-        /// txt_password control.
+        /// Lbl_currentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_password;
+        protected global::System.Web.UI.WebControls.Label Lbl_currentPassword;
 
         /// <summary>
-        /// lbl_confirm control.
+        /// Txt_currentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_confirm;
+        protected global::System.Web.UI.WebControls.TextBox Txt_currentPassword;
 
         /// <summary>
-        /// txt_confirm control.
+        /// Lbl_newPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_confirm;
+        protected global::System.Web.UI.WebControls.Label Lbl_newPassword;
 
         /// <summary>
-        /// lbl_error control.
+        /// Lbl_confirmationPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_error;
+        protected global::System.Web.UI.WebControls.Label Lbl_confirmationPassword;
 
         /// <summary>
-        /// btn_update control.
+        /// Txt_confirmationPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_update;
+        protected global::System.Web.UI.WebControls.TextBox Txt_confirmationPassword;
+
+        /// <summary>
+        /// Lbl_error2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_error2;
+
+        /// <summary>
+        /// Lbl_scs2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_scs2;
+
+        /// <summary>
+        /// btn_updatePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_updatePassword;
     }
 }
