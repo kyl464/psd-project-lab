@@ -1,22 +1,25 @@
-﻿using PSDProject.Factory;
-using PSDProject.Model;
-using System;
+﻿using PSDProject.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace PSDProject.Repository
 {
     public class TDRepository
     {
-        public static RAisoDBEntities db = DatabaseSingleton.getInstance();
+        private static RAisoDBEntities db = DatabaseSingleton.getInstance();
 
-        public static TransactionDetail CreateTD(int transactionID, int stationeryID, int quantity)
+        public static void SaveDetail(TransactionDetail transactionDetail)
         {
-            TransactionDetail transactionDetail = TDFactory.CreateTD(transactionID, stationeryID, quantity);
             db.TransactionDetails.Add(transactionDetail);
             db.SaveChanges();
-            return transactionDetail;
+        }
+
+        public static List<TransactionDetail> GetTransactionDetails(int transactionID)
+        {
+            return db.TransactionDetails
+                     .Include("MsStationery") // Include MsStationery for eager loading
+                     .Where(td => td.TransactionID == transactionID)
+                     .ToList();
         }
     }
 }

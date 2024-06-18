@@ -21,6 +21,11 @@ namespace PSDProject.Repository
             return db.Carts.Where(c => c.UserID == userID).ToList();
         }
 
+        public static List<Cart> GetAllByUserID(int userID)
+        {
+            return GetCartsByUserID(userID);
+        }
+
         public static List<Cart> GetCartsByStationeryId(int stationeryID)
         {
             return db.Carts.Where(cart => cart.StationeryID == stationeryID).ToList();
@@ -68,7 +73,7 @@ namespace PSDProject.Repository
             }
         }
 
-        public static void DeleteCart(int userID, int stationeryID)
+        public static void Delete(int userID, int stationeryID)
         {
             Cart cart = FindByID(userID, stationeryID);
             if (cart != null)
@@ -78,9 +83,19 @@ namespace PSDProject.Repository
             }
         }
 
+        public static void ClearByUserID(int userID)
+        {
+            var carts = GetCartsByUserID(userID);
+            foreach (var cart in carts)
+            {
+                db.Carts.Remove(cart);
+            }
+            db.SaveChanges();
+        }
+
         public static Cart FindByID(int userID, int stationeryID)
         {
-            return db.Carts.Find(userID, stationeryID);
+            return db.Carts.FirstOrDefault(c => c.UserID == userID && c.StationeryID == stationeryID);
         }
     }
 }

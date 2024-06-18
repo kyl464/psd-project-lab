@@ -81,7 +81,7 @@ namespace PSDProject.Controller
         }
         public static void DeleteStationery(int id)
         {
-            List<PSDProject.Model.Cart> carts = CartController.GetAllCartsByStationeryID(id);
+            List<PSDProject.Model.Cart> carts = CartController.GetAllCartsByUserID(id);
             if (carts  != null)
             {
 

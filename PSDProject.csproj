@@ -100,6 +100,7 @@
     <Content Include="View\Login.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\StationeryDetails.aspx" />
+    <Content Include="View\TransactionDetails.aspx" />
     <Content Include="View\TransactionHistory.aspx" />
     <Content Include="View\UpdateStationery.aspx" />
     <Content Include="Web.config" />
@@ -107,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Controller\CartController.cs" />
     <Compile Include="Controller\StationeryController.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\StationeryFactory.cs" />
@@ -218,6 +220,13 @@
     </Compile>
     <Compile Include="View\StationeryDetails.aspx.designer.cs">
       <DependentUpon>StationeryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransactionDetails.aspx.cs">
+      <DependentUpon>TransactionDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\TransactionDetails.aspx.designer.cs">
+      <DependentUpon>TransactionDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>

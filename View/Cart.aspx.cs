@@ -29,15 +29,25 @@ namespace PSDProject.View
         {
             foreach (GridViewRow row in gvCart.Rows)
             {
-                int userID = GetLoggedInUserID();
-                int stationeryID = Convert.ToInt32(gvCart.DataKeys[row.RowIndex].Value);
-                int newQuantity = Convert.ToInt32((row.Cells[2].FindControl("txtQuantity") as TextBox).Text);
+                try
+                {
+                    int userID = GetLoggedInUserID();
+                    int stationeryID = Convert.ToInt32(gvCart.DataKeys[row.RowIndex].Value);
+                    int newQuantity = Convert.ToInt32((row.Cells[2].FindControl("txtQuantity") as TextBox).Text);
 
-                CartController.UpdateCart(userID, stationeryID, newQuantity);
+                    CartController.UpdateCart(userID, stationeryID, newQuantity);
+                }
+                catch (Exception ex)
+                {
+                    // Tangani kesalahan dan berikan umpan balik kepada pengguna atau log error
+                    Response.Write($"Kesalahan: {ex.Message}");
+                }
             }
 
             BindCartItems();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Cart Updated');", true);
         }
+
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
@@ -56,6 +66,7 @@ namespace PSDProject.View
         {
             return StationeryController.GetStationery(stationeryID).StationeryName;
         }
+
         private int GetLoggedInUserID()
         {
             HttpCookie cookie = Request.Cookies["session"];

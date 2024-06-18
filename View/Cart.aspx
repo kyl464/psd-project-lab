@@ -4,7 +4,7 @@
     <h1>Shopping Cart</h1>
     
     <!-- GridView untuk menampilkan item dalam keranjang -->
-    <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" OnRowDeleting="gvCart_RowDeleting">
+    <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" OnRowDeleting="gvCart_RowDeleting" DataKeyNames="StationeryID">
         <Columns>
             <asp:BoundField DataField="StationeryID" HeaderText="Stationery ID" />
             <asp:BoundField DataField="MsStationery.StationeryName" HeaderText="Stationery Name" />
