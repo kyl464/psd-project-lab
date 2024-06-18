@@ -38,14 +38,14 @@ namespace PSDProject.View
         {
             if (!IsPostBack)
             {
-                // Misalnya UserID diambil dari session
+               
                 int userID = Convert.ToInt32(Session["userID"]);
-                // HiddenUserID.Value = userID.ToString();
+                
 
                 if (Request.QueryString["ID"] != null)
                 {
                     int stationeryID = Convert.ToInt32(Request.QueryString["ID"]);
-                    // HiddenStationeryID.Value = stationeryID.ToString();
+                    
 
                     MsStationery stationery = StationeryController.GetStationery(stationeryID);
                     BindStationeryData(stationery);
@@ -68,16 +68,16 @@ namespace PSDProject.View
                 int stationeryID = Convert.ToInt32(Request.QueryString["ID"]);
                 int quantity = int.Parse(txtQuantity.Text);
 
-                // Logging values to debug
+              
                 System.Diagnostics.Debug.WriteLine($"UserID: {userID}, StationeryID: {stationeryID}, Quantity: {quantity}");
 
                 PSDProject.Model.Cart cart = CartHandler.CreateOrUpdateCart(userID, stationeryID, quantity);
-                // Tampilkan pesan sukses atau perbarui UI
+               
                 Response.Write("<script>alert('Item added to cart successfully.');</script>");
             }
             catch (Exception ex)
             {
-                // Tangani error (tampilkan pesan error, log error, dll.)
+                
                 Response.Write($"<script>alert('Error: {ex.Message}');</script>");
                 System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
                 if (ex.InnerException != null)

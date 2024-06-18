@@ -18,7 +18,7 @@ namespace PSDProject.View
 
         protected void btn_cancel_Click(object sender, EventArgs e)
         {
-            // Redirect to cart page or previous page
+     
             Response.Redirect("~/View/Cart.aspx");
         }
 
@@ -27,13 +27,13 @@ namespace PSDProject.View
             int userID = GetLoggedInUserID();
             var cartItems = CartController.GetAllCartsByUserID(userID);
 
-            // Save transaction
+         
             TransactionController.SaveTransaction(userID, cartItems);
 
-            // Clear the cart after checkout
+            
             CartController.ClearCart(userID);
 
-            // Show Thank You message and redirect to home page
+            
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Thank You for Shopping'); window.location='Home.aspx';", true);
         }
 

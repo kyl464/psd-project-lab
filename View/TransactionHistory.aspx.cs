@@ -55,10 +55,10 @@ namespace PSDProject.View
 
         protected void gv_TransactionHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Ambil TransactionID dari row yang dipilih
+            
             int transactionID = Convert.ToInt32(gv_TransactionHistory.SelectedDataKey.Value);
 
-            // Redirect ke halaman TransactionDetails.aspx dengan query string TransactionID
+           
             Response.Redirect($"TransactionDetails.aspx?TransactionID={transactionID}");
         }
 
@@ -68,19 +68,17 @@ namespace PSDProject.View
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
 
-                // Pastikan rowIndex berada dalam rentang yang valid
+                
                 if (rowIndex >= 0 && rowIndex < gv_TransactionHistory.Rows.Count)
                 {
                     int transactionID = Convert.ToInt32(gv_TransactionHistory.DataKeys[rowIndex]["TransactionID"]);
 
-                    // Redirect ke halaman TransactionDetails.aspx dengan query string TransactionID
+                   
                     Response.Redirect($"TransactionDetails.aspx?TransactionID={transactionID}");
                 }
                 else
                 {
-                    // Tangani kasus di mana rowIndex di luar rentang yang valid
-                    // Misalnya, tampilkan pesan kesalahan atau log ke konsol
-                    // atau lakukan tindakan pemulihan lainnya.
+                    
                     Response.Write("Error: Row index is out of range.");
                 }
             }

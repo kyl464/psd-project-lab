@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/LoggedInMaster.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="PSDProject.View.Checkout" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/GuestMaster.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="PSDProject.View.Checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentBody" runat="server">
     <h1>Checkout Confirmation</h1>

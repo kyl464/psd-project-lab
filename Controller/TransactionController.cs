@@ -10,10 +10,10 @@ namespace PSDProject.Controller
     {
         public static void SaveTransaction(int userID, List<Cart> cartItems)
         {
-            // Create a new transaction header entry using THRepository
+            
             var transactionHeader = THRepository.CreateTH(userID, DateTime.Now);
 
-            // Create and save transaction items using TDRepository
+            
             foreach (var item in cartItems)
             {
                 var transactionDetail = new TransactionDetail

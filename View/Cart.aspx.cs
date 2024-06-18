@@ -52,7 +52,7 @@ namespace PSDProject.View
                 }
                 catch (Exception ex)
                 {
-                    // Tangani kesalahan dan berikan umpan balik kepada pengguna atau log error
+                    
                     Response.Write($"Kesalahan: {ex.Message}");
                 }
             }
@@ -64,7 +64,7 @@ namespace PSDProject.View
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            // Redirect to checkout page or handle checkout process
+
             Response.Redirect("~/View/Checkout.aspx");
         }
 

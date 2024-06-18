@@ -1,5 +1,4 @@
-﻿// TransactionDetails.aspx.cs
-using PSDProject.Controller;
+﻿using PSDProject.Controller;
 using PSDProject.Model;
 using System;
 using System.Collections.Generic;
