@@ -96,12 +96,14 @@
     <Content Include="View\Cart.aspx" />
     <Content Include="View\Checkout.aspx" />
     <Content Include="View\InsertStationery.aspx" />
+    <Content Include="View\Profile.aspx" />
     <Content Include="View\Register.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Home.aspx" />
     <Content Include="View\StationeryDetails.aspx" />
     <Content Include="View\TransactionDetails.aspx" />
     <Content Include="View\TransactionHistory.aspx" />
+    <Content Include="View\UpdateProfile.aspx" />
     <Content Include="View\UpdateStationery.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -165,6 +167,7 @@
     </Compile>
     <Compile Include="Module\Json.cs" />
     <Compile Include="Module\Result.cs" />
+    <Compile Include="Module\SessionCookie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\DatabaseSingleton.cs" />
@@ -192,6 +195,13 @@
     </Compile>
     <Compile Include="View\InsertStationery.aspx.designer.cs">
       <DependentUpon>InsertStationery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -234,6 +244,13 @@
     </Compile>
     <Compile Include="View\TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateProfile.aspx.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UpdateProfile.aspx.designer.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\UpdateStationery.aspx.cs">
       <DependentUpon>UpdateStationery.aspx</DependentUpon>

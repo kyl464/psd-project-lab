@@ -1,5 +1,6 @@
 ﻿using PSDProject.Controller;
 using PSDProject.Model;
+using PSDProject.Module;
 using System;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -12,6 +13,18 @@ namespace PSDProject.View
         {
             if (!IsPostBack)
             {
+                if (!IsPostBack)
+                {
+                    HttpCookie cookie = Request.Cookies["session"];
+                    if (cookie != null)
+                    {
+                        SessionCookie.createSession(Session, cookie);
+                    }
+                    if (Session["userID"] == null || Session["userRole"].ToString() != "Customer")
+                    {
+                        Response.Redirect("~/View/Login.aspx");
+                    }
+                }
                 BindCartItems();
             }
         }

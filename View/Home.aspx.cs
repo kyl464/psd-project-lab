@@ -1,4 +1,5 @@
 ﻿using PSDProject.Controller;
+using PSDProject.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace PSDProject.View
             HttpCookie cookie = Request.Cookies["session"];
             if (cookie != null)
             {
+                SessionCookie.createSession(Session, cookie);
+            }
+
+            if (Session["userID"] != null)
+            {
                 Page.MasterPageFile = "~/Master/LoggedInMaster.Master";
             }
             else
@@ -27,19 +33,15 @@ namespace PSDProject.View
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["session"];
-            if (cookie != null)
-            {
-                int userID;
-                if (int.TryParse(cookie.Values["userID"], out userID))
-                {
-                    Session["UserID"] = userID;
-                }
-            }
-
+ 
             if (!IsPostBack)
             {
-                if (cookie == null || cookie["role"] != "Admin")
+                HttpCookie cookie = Request.Cookies["session"];
+                if (cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     btn_insert.Visible = false;
                     gv_stationeries.Columns[3].Visible = false;
@@ -62,8 +64,7 @@ namespace PSDProject.View
                 HyperLink hlStationeryDetails = (HyperLink)e.Row.FindControl("hlStationeryDetails");
                 Label lblStationeryName = (Label)e.Row.FindControl("lblStationeryName");
 
-                HttpCookie cookie = Request.Cookies["session"];
-                if (cookie == null || (cookie["role"] != "Admin" && cookie["role"] != "Customer"))
+                if (Session["userID"] == null || (Session["userRole"].ToString().ToString() != "Admin" && Session["userRole"].ToString() != "Customer"))
                 {
                     hlStationeryDetails.Visible = false;
                     lblStationeryName.Visible = true;

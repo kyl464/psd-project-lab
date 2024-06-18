@@ -47,7 +47,7 @@ namespace PSDProject.Controller
             return age >= 1;
         }
 
-        public static Result<MsUser> Register(string name, string gender, string dob, string phone, string address, string password, string role)
+        public static Result<MsUser> Register(string name, string gender, string dob, string phone, string address, string password, string confirm, string role)
         {
             
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(dob) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(password))
@@ -68,7 +68,7 @@ namespace PSDProject.Controller
                     item = null
                 };
             }
-            if (UserHandler.GetUser(name) != null)
+            if (GetUser(name) != null)
             {
                 return new Result<MsUser>()
                 {
@@ -83,6 +83,15 @@ namespace PSDProject.Controller
                 {
                     status = false,
                     message = "Password must be alphanumeric",
+                    item = null
+                };
+            }
+            if (confirm != password)
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "Password does not match",
                     item = null
                 };
             }
@@ -142,6 +151,71 @@ namespace PSDProject.Controller
                 status = true,
                 message = "Login Successful",
                 item = user
+            };
+        }
+
+        public static Result<MsUser> UpdateUser(string name, string gender, string dob, string phone, string address, string password, string confirm)
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(dob) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(password))
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "All fields must be filled",
+                    item = null
+                };
+            }
+            if (name.Length < 5 || name.Length > 50)
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "Name must be between 5 to 50 characters",
+                    item = null
+                };
+            }
+            if (GetUser(name) != null)
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "User already exist",
+                    item = null
+                };
+            }
+            if (!IsAlphanumeric(password))
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "Password must be alphanumeric",
+                    item = null
+                };
+            }
+            if (confirm != password)
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "Password does not match",
+                    item = null
+                };
+            }
+            if (!ageAtLeastOne(dob))
+            {
+                return new Result<MsUser>()
+                {
+                    status = false,
+                    message = "User must be at least 1 year old",
+                    item = null
+                };
+            }
+
+            return new Result<MsUser>()
+            {
+                status = UserHandler.UpdateUser(name, gender, dob, phone, address, password),
+                message = "Update successful",
+                item = GetUser(name)
             };
         }
     }

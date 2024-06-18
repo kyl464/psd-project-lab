@@ -28,7 +28,7 @@ namespace PSDProject.Repository
             return db.MsUsers.FirstOrDefault(x => x.UserID == id);
         }
 
-        public static bool UpdateUser(string name, string gender, string dob, string phone, string address, string password, string role)
+        public static bool UpdateUser(string name, string gender, string dob, string phone, string address, string password)
         {
             MsUser user = FindByName(name);
 

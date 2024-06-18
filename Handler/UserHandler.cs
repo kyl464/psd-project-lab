@@ -15,9 +15,9 @@ namespace PSDProject.Handler
             return newUser;
         }
 
-        public static Boolean UpdateUser(string name, string gender, string dob, string phone, string address, string password, string role)
+        public static Boolean UpdateUser(string name, string gender, string dob, string phone, string address, string password)
         {
-            return UserRepository.UpdateUser(name, gender, dob, phone, address, password, role);
+            return UserRepository.UpdateUser(name, gender, dob, phone, address, password);
         }
 
         public static void DeleteUser(string username)

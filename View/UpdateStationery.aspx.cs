@@ -16,11 +16,14 @@ namespace PSDProject.View
         {
             if(!IsPostBack)
             {
-                HttpCookie cookie = HttpContext.Current.Request.Cookies["session"];
-                if(cookie == null || cookie["role"] != "Admin")
+                HttpCookie cookie = Request.Cookies["session"];
+                if (cookie != null)
+                {
+                    SessionCookie.createSession(Session, cookie);
+                }
+                if (Session["userID"] == null || Session["userRole"].ToString() != "Admin")
                 {
                     Response.Redirect("~/View/Login.aspx");
-                    return;
                 }
 
                 int id = GetStationeryID();

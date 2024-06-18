@@ -123,6 +123,24 @@ namespace PSDProject.View
         protected global::System.Web.UI.WebControls.TextBox txt_password;
 
         /// <summary>
+        /// lbl_confirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_confirm;
+
+        /// <summary>
+        /// txt_confirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_confirm;
+
+        /// <summary>
         /// check_rememberme control.
         /// </summary>
         /// <remarks>

@@ -13,6 +13,15 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["session"];
+            if(cookie != null)
+            {
+                SessionCookie.createSession(Session, cookie);
+            }
+            if (Session["userID"] != null)
+            {
+                Response.Redirect("~/View/Home.aspx");
+            }
 
         }
 
@@ -26,19 +35,19 @@ namespace PSDProject.View
             lbl_error.Text = result.message;
             Boolean rememberMe = check_rememberme.Checked;
 
+            if (rememberMe)
+            {
+                HttpCookie cookie = SessionCookie.createCookie(result.item.UserID.ToString(), name, result.item.UserRole);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+            }
+
             if (result.status)
             {
                 lbl_error.Visible = false;
-                HttpCookie cookie = new HttpCookie("session");
-                cookie.Values["role"] = result.item.UserRole;
-                cookie.Values["userID"] = result.item.UserID.ToString(); // Simpan userID dalam cookie
-
-                if (rememberMe)
-                {
-                    cookie.Expires = DateTime.Now.AddDays(1);
-                }
-                Response.Cookies.Add(cookie);
+                SessionCookie.createSession(Session, result.item.UserID.ToString(), name, result.item.UserRole);
                 Response.Redirect("~/View/Home.aspx");
+                return;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using PSDProject.Controller;
 using PSDProject.Handler;
 using PSDProject.Model;
+using PSDProject.Module;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -19,6 +20,11 @@ namespace PSDProject.View
             HttpCookie cookie = Request.Cookies["session"];
             if (cookie != null)
             {
+                SessionCookie.createSession(Session, cookie);
+            }
+
+            if (Session["userID"] != null)
+            {
                 Page.MasterPageFile = "~/Master/LoggedInMaster.Master";
             }
             else
@@ -33,7 +39,7 @@ namespace PSDProject.View
             if (!IsPostBack)
             {
                 // Misalnya UserID diambil dari session
-                int userID = Convert.ToInt32(Session["UserID"]);
+                int userID = Convert.ToInt32(Session["userID"]);
                 // HiddenUserID.Value = userID.ToString();
 
                 if (Request.QueryString["ID"] != null)

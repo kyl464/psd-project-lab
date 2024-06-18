@@ -35,6 +35,11 @@
         <asp:TextBox ID="txt_password" TextMode="Password" runat="server"></asp:TextBox>
     </div>
 
+     <div>
+     <asp:Label ID="lbl_confirm" runat="server" Text="Password :"></asp:Label>
+     <asp:TextBox ID="txt_confirm" TextMode="Password" runat="server"></asp:TextBox>
+ </div>
+
     <div>
         <asp:CheckBox ID="check_rememberme" runat="server" Text="Remember Me" />
     </div>

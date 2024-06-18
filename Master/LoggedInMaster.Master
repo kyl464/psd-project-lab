@@ -15,7 +15,7 @@
             <asp:Button ID="btn_cart" runat="server" Text="Cart" CssClass="button" BorderStyle="None" OnClick="btn_cart_Click" />
             <asp:Button ID="btn_transaction" runat="server" Text="Transaction" CssClass="button" BorderStyle="None" OnClick="btn_transaction_Click"/>
             <asp:Button ID="btn_report" runat="server" Text="Transaction" CssClass="button" BorderStyle="None" />
-            <asp:Button ID="btn_profile" runat="server" Text="Profile" CssClass="button" BorderStyle="None" />
+            <asp:Button ID="btn_profile" runat="server" Text="Profile" CssClass="button" BorderStyle="None" OnClick="btn_profile_Click" />
             <asp:Button ID="btn_logout" runat="server" Text="Logout" CssClass="button" BorderStyle="None" OnClick="btn_logout_Click" />
         </div>
 

@@ -15,6 +15,15 @@ namespace PSDProject.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["session"];
+            if (cookie != null)
+            {
+                SessionCookie.createSession(Session, cookie);
+            }
+            if (Session["userID"] != null)
+            {
+                Response.Redirect("~/View/Home.aspx");
+            }
 
         }
 
@@ -27,24 +36,23 @@ namespace PSDProject.View
             string phone = txt_phone.Text;
             string address = txt_address.Text;
             string password = txt_password.Text;
+            string confirm = txt_confirm.Text;
             string role = "Customer";
-            Result<MsUser> result = UserController.Register(name, gender, dob, phone, address, password, role);
+            Result<MsUser> result = UserController.Register(name, gender, dob, phone, address, password, confirm, role);
             lbl_error.Text = result.message;
-            Boolean rememberMe = check_rememberme.Checked;
-
-            HttpCookie cookie = new HttpCookie("session");
+            Boolean rememberMe = check_rememberme.Checked;        
 
             if (rememberMe)
             {
-                cookie.Values["name"] = name;
-                cookie.Values["role"] = result.item.UserRole;
+                HttpCookie cookie = SessionCookie.createCookie(result.item.UserID.ToString(), name, role);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
             }
 
             if (result.status)
             {
                 lbl_error.Visible = false;
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(cookie);
+                SessionCookie.createSession(Session, result.item.UserID.ToString(), name, role);
                 Response.Redirect("~/View/Home.aspx");
                 return;
             }           
